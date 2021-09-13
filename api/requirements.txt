@@ -1,4 +1,7 @@
-Flask==2.0.1
-Flask-RESTful==0.3.9
-Werkzeug==2.0.1
+apispec
 blinker
+Flask
+flask-apispec
+Flask-RESTful
+marshmallow
+Werkzeug

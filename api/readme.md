@@ -5,7 +5,7 @@
 Create a virtualenv and activate it:
 
 ```bash
-python3 -m venv venv
+python3.7 -m venv venv
 . venv/bin/activate
 ```
 
@@ -13,7 +13,7 @@ Install dependencies:
 
 ```bash
 npm install -g serverless
-pip install -r requirements.txt
+pip3.7 install -r requirements.txt
 npm install
 ```
 

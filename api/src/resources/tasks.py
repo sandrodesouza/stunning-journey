@@ -1,4 +1,8 @@
 from flask_restful import Resource, abort, reqparse, inputs
+from flask_apispec import marshal_with, doc, use_kwargs
+from flask_apispec.views import MethodResource
+from src.schemas.tasks import TaskResponse, TasksRequestSchema, TasksResponseSchema
+from src.schemas.not_found import NotFoundResponse
 from src.database.db import get_db
 
 
@@ -33,8 +37,12 @@ def get_repository():
     return get_db()["tasks"]
 
 
-class Tasks(Resource):
-    def get(self):
+class Tasks(MethodResource, Resource):
+
+    @doc(description='Retrieves all tasks listed on the tasks.json file', tags=['Tasks'])
+    @use_kwargs(TasksRequestSchema, location=('query'))
+    @marshal_with(TasksResponseSchema, code=200)
+    def get(self, **kwargs):
         args = create_request_parser()
         tasks = list()
         task_repository = get_repository()
@@ -44,8 +52,12 @@ class Tasks(Resource):
         return {"data": apply_limit_offset(tasks, args), "total_items": len(tasks)}
 
 
-class Task(Resource):
-    def get(self, task_id):
+class Task(MethodResource, Resource):
+
+    @doc(description='Retrieves information from a single task', tags=['Tasks'])
+    @marshal_with(TaskResponse, code=200)
+    @marshal_with(NotFoundResponse, code=404)
+    def get(self, task_id, **kwargs):
         task_repository = get_repository()
         for task in task_repository:
             if task["id"] == task_id:
@@ -53,8 +65,12 @@ class Task(Resource):
         abort(404, message="Task {} doesn't exist".format(task_id))
 
 
-class UserTasks(Resource):
-    def get(self, user_id):
+class UserTasks(MethodResource, Resource):
+
+    @doc(description='Retrieves all tasks from the specified user', tags=['Tasks'])
+    @use_kwargs(TasksRequestSchema, location=('query'))
+    @marshal_with(TasksResponseSchema, code=200)
+    def get(self, user_id, **kwargs):
         args = create_request_parser()
         tasks = list()
         task_repository = get_repository()
