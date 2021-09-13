@@ -1,0 +1,5 @@
+GET https://2v3ne03jwc.execute-api.us-east-1.amazonaws.com/dev/dogs/2
+
+###
+
+GET https://h5auhhyeph.execute-api.us-east-1.amazonaws.com/qa/dogs/1

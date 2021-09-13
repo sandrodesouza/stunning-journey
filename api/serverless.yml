@@ -1,0 +1,34 @@
+service: stunning-journey
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: us-east-1
+  tags:
+    customer: wazuh
+  deploymentBucket:
+    name: ${env:DEPLOYMENT_BUCKET}
+
+plugins:
+  - serverless-wsgi
+  - serverless-layers
+
+package:
+  patterns:
+    - "!venv/**"
+    - "!node_modules/**"
+    - "!__pycache__/**"
+    - "!__test__/**"
+
+functions:
+  api:
+    handler: wsgi_handler.handler
+    events:
+      - http: ANY /
+      - http: ANY /{proxy+}
+
+custom:
+  wsgi:
+    app: api.app
+    packRequirements: false
