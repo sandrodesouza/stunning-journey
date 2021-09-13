@@ -3,3 +3,6 @@ __pycache__/
 .serverless/
 venv/
 .env
+.pytest_cache/
+*.sqlite
+.vscode/

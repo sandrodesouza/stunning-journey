@@ -1,0 +1,18 @@
+@url=https://2v3ne03jwc.execute-api.us-east-1.amazonaws.com/dev
+@url=https://h5auhhyeph.execute-api.us-east-1.amazonaws.com/qa
+@url=http://localhost:5000
+
+###
+GET {{url}}/users
+
+
+###
+GET {{url}}/users/1
+
+
+### 
+get {{url}}/tasks
+
+
+###
+GET {{url}}/users/1/tasks?completed=false
