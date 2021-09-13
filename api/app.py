@@ -1,3 +1,4 @@
+import os
 from flask import Flask, got_request_exception
 from flask_restful import Api
 from flask_apispec.extension import FlaskApiSpec
@@ -16,12 +17,17 @@ api = Api(app, catch_all_404s=True)
 got_request_exception.connect(log_exception, app)
 
 
+settings = {"basePath": "/dev"}
+if os.getenv("IS_OFFLINE") is not None:
+    settings["basePath"] = "/"
+
 app.config.update({
     'APISPEC_SPEC': APISpec(
         title='Stunning Journey',
         version='v1',
         plugins=[MarshmallowPlugin()],
-        openapi_version='2.0.0'
+        openapi_version='2.0',
+        **settings
     ),
     'APISPEC_SWAGGER_URL': '/swagger/',  # URI to access API Doc JSON
     'APISPEC_SWAGGER_UI_URL': '/swagger-ui/'  # URI to access UI of API Doc
