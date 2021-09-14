@@ -1,9 +1,13 @@
 import "./App.css";
 import { Layout } from "antd";
-import { PageHeader } from "antd";
 import { BrowserRouter as Router } from "react-router-dom";
 import { SiderMenu } from "./Components/SiderMenu";
 import { RouterContent } from "./Components/RouterContent";
+import { makeServer } from "./server";
+
+if (process.env.NODE_ENV === "development") {
+  makeServer({ environment: "development" });
+}
 
 const App = () => {
   return (
