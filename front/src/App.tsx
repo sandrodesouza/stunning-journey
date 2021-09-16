@@ -3,7 +3,7 @@ import { Layout } from "antd";
 import { BrowserRouter as Router } from "react-router-dom";
 import { SiderMenu } from "./Components/SiderMenu";
 import { RouterContent } from "./Components/RouterContent";
-import { makeServer } from "./server";
+import { makeServer } from "./mock/server";
 
 if (process.env.NODE_ENV === "development") {
   makeServer({ environment: "development" });

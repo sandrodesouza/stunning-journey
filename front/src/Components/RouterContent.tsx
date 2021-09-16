@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Layout, PageHeader } from "antd";
-import { Tasks } from "../Pages/Tasks";
-import { Users } from "../Pages/Users";
+import Tasks from "../Pages/Tasks";
+import Users from "../Pages/Users";
 import { Home } from "../Pages/Home";
 import { Switch, Route } from "react-router-dom";
 const { Content } = Layout;
