@@ -19,7 +19,7 @@ export default {
     try {
       let requestParams: any = {
         page: pagination?.current,
-        offset: pagination?.current * 10,
+        offset: (pagination?.current - 1) * 10,
         title: filters["title"],
         completed: filters["completed"],
       };

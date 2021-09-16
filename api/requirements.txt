@@ -5,3 +5,4 @@ flask-apispec
 Flask-RESTful
 marshmallow
 Werkzeug
+flask-cors

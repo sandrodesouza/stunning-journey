@@ -5,6 +5,7 @@ from flask_apispec.extension import FlaskApiSpec
 from apispec.ext.marshmallow import MarshmallowPlugin
 from apispec import APISpec
 from src.routes import initialize_routes
+from flask_cors import CORS
 
 
 def log_exception(sender, exception, **extra):
@@ -12,6 +13,7 @@ def log_exception(sender, exception, **extra):
 
 
 app = Flask(__name__)
+CORS(app)
 
 api = Api(app, catch_all_404s=True)
 got_request_exception.connect(log_exception, app)
